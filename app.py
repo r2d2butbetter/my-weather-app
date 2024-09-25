@@ -8,7 +8,6 @@ import os
 load_dotenv()
 api_key = os.getenv('API_KEY')
 
-
 app=Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -22,7 +21,7 @@ def weather():
 
     data=json.loads(source)
     print(data)
-    weather_data = {"country_code": data['sys']['country'],"name":data['sys']['name'], "coordinate": data['coord']['lon'], "coordinate": data['coord']['lat'], "temp": data['main']['temp'], "pressure": data['main']['pressure'], "humidity": data['main']['humidity'], "weather": data['weather'][0]['description'], "icon": data['weather'][0]['icon']}
+    weather_data = {"country_code": data['sys']['country'], "coordinate": data['coord']['lon'], "coordinate": data['coord']['lat'], "temp": data['main']['temp'], "pressure": data['main']['pressure'], "humidity": data['main']['humidity'], "weather": data['weather'][0]['description'], "icon": data['weather'][0]['icon']}
     return render_template('index.html', data=weather_data)
 
 if __name__ == '__main__':
